@@ -1,0 +1,12 @@
+{
+	"generators": {
+		"b44c43a8": {
+			"type": "local",
+			"path": "/usr/src/front/.npm/_npx/1/lib/node_modules/create-nuxt-app/lib",
+			"hash": "b44c43a8"
+		}
+	},
+	"answers": {
+		"b44c43a8__npm__": {}
+	}
+}
