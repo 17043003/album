@@ -36,9 +36,9 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[6.0]
       # t.datetime :locked_at
 
       ## User Info
-      t.string :name, null: false, unique: true
+      t.string :name, null: false, default: "", unique: true
       t.string :image
-      t.string :email, null: false, unique: true
+      t.string :email, null: false, default: "", unique: true
 
       ## Tokens
       t.text :tokens
