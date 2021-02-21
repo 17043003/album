@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -25,7 +27,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'is invalid, it is too long' do
-      user = FactoryBot.build(:user, email: 'a' * 100 + '@example.com')
+      user = FactoryBot.build(:user, email: "#{'a' * 100}@example.com")
       expect(user).to be_invalid
     end
 
