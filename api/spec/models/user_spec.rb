@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'is invalid, it is too long' do
-      user = FactoryBot.build(:user, name: 'a'*101)
+      user = FactoryBot.build(:user, name: 'a' * 101)
       expect(user).to be_invalid
     end
   end
@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'is invalid, it is too long' do
-      user = FactoryBot.build(:user, email: 'a'*100 + '@example.com')
+      user = FactoryBot.build(:user, email: 'a' * 100 + '@example.com')
       expect(user).to be_invalid
     end
 
