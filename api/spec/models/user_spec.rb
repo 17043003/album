@@ -32,27 +32,25 @@ RSpec.describe User, type: :model do
     end
 
     it 'is invalid, they are not uniqueness' do
-      signed_up_user = FactoryBot.create(:user, email: 'testAddress@example.com')
+      FactoryBot.create(:user, email: 'testAddress@example.com')
       new_user = FactoryBot.build(:user, email: 'testAddress@example.com')
       expect(new_user).to be_invalid
     end
   end
 
   describe 'password' do
-    it 'has not 8 to 20 characters' do
+    it 'has less than 8 characters' do
       user = FactoryBot.build(:user, password: 'abcd')
       expect(user).to be_invalid
+    end
 
+    it 'has more than 20 characters' do
       user = FactoryBot.build(:user, password: 'a' * 21)
       expect(user).to be_invalid
     end
 
     it 'does not match password_confimation' do
-      user = FactoryBot.build(
-        :user,
-        password: 'ExamplePassword',
-        password_confirmation: 'TestPassword'
-      )
+      user = FactoryBot.build(:user, password: 'ExamplePassword', password_confirmation: 'TestPassword')
       expect(user).to be_invalid
     end
   end
