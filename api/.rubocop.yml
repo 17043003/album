@@ -1,0 +1,36 @@
+# inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'bin/**/*'
+    - 'db/schema.rb'
+  TargetRubyVersion: 2.7.2
+
+Documentation:
+  Enabled: false
+
+  # 日本語コメントを許可
+Style/AsciiComments:
+  Enabled: false
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'db/migrate/*'
+
+Layout/LineLength:
+  Exclude:
+    - 'config/initializers/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
