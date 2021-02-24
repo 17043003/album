@@ -48,8 +48,8 @@ export default {
 
   auth: {
     redirect: {
-      login: '/login',
-      logout: '/login',
+      login: '/signin',
+      logout: '/signin',
       callback: false,
       home: '/mypage',
     },
