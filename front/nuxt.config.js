@@ -51,7 +51,7 @@ export default {
       login: '/signin',
       logout: '/signin',
       callback: false,
-      home: '/mypage',
+      home: 'user/mypage',
     },
     strategies: {
       local: {
@@ -59,7 +59,7 @@ export default {
           login: {
             url: 'auth/sign_in',
             method: 'post',
-            propertyName: 'token',
+            propertyName: 'headers.token',
           },
           logout: {
             url: 'auth/sign_out',
