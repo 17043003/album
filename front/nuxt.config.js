@@ -63,7 +63,7 @@ export default {
           },
           logout: {
             url: 'auth/sign_out',
-            method: 'post',
+            method: 'delete',
             propertyName: false,
           },
           user: false,
