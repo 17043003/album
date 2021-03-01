@@ -40,13 +40,17 @@ export default Vue.extend({
         })
         .then(
           (response) => {
-            localStorage.setItem(
-              'access-token',
-              response.headers['access-token']
+            this.$auth.$storage.setLocalStorage('token', response.headers.token)
+            this.$auth.$storage.setLocalStorage(
+              'client',
+              response.headers.client
             )
-            localStorage.setItem('client', response.headers.client)
-            localStorage.setItem('uid', response.headers.uid)
-            localStorage.setItem('token-type', response.headers['token-type'])
+            this.$auth.$storage.setLocalStorage('uid', response.headers.uid)
+            this.$auth.$storage.setLocalStorage(
+              'token-type',
+              response.headers['token-type']
+            )
+            this.$auth.setUserToken(response.headers.token, null)
             return response
           },
           (error) => {

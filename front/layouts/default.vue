@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Nuxt />
+    <Header class="nav-header" />
+    <Nuxt class="main-content" />
   </div>
 </template>
 
@@ -51,5 +52,14 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+.main-content {
+  margin-top: 70px;
+}
+
+.nav-header {
+  position: fixed;
+  height: 70px;
 }
 </style>
