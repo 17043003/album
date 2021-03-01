@@ -51,7 +51,7 @@ export default {
       login: '/signin',
       logout: '/signin',
       callback: false,
-      home: 'user/mypage',
+      home: '/user/mypage',
     },
     strategies: {
       local: {
