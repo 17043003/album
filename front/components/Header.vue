@@ -1,7 +1,6 @@
 <template>
   <div class="header">
-    <button>{{ loginOrLogoutButtonName }}</button>
-    <!-- <button>{{ $auth.$state }}</button> -->
+    <LogoutButton v-if="this.$auth.$state.loggedIn" class="logout-button" />
   </div>
 </template>
 
@@ -13,12 +12,6 @@ export default Vue.extend({
       buttonName: 'ログイン',
     }
   },
-  computed: {
-    loginOrLogoutButtonName() {
-      return this.$auth.$state.loggedIn ? 'ログアウト' : this.$auth.user
-      //   return this.$store.state.auth.loggedIn
-    },
-  },
 })
 </script>
 
@@ -27,5 +20,11 @@ export default Vue.extend({
   top: 0;
   width: 100%;
   background-color: bisque;
+  display: flex;
+}
+
+.logout-button {
+  justify-content: flex-end;
+  margin: 15px 0 15px auto;
 }
 </style>
