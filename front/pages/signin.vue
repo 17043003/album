@@ -40,16 +40,6 @@ export default Vue.extend({
         })
         .then(
           (response) => {
-            this.$auth.$storage.setLocalStorage('token', response.headers.token)
-            this.$auth.$storage.setLocalStorage(
-              'client',
-              response.headers.client
-            )
-            this.$auth.$storage.setLocalStorage('uid', response.headers.uid)
-            this.$auth.$storage.setLocalStorage(
-              'token-type',
-              response.headers['token-type']
-            )
             this.$auth.setUserToken(response.headers.token, null)
             return response
           },
