@@ -1,16 +1,41 @@
 <template>
   <div>
     <h1 class="title">ログイン</h1>
-    <div class="form-wrapper">
-      <input v-model="email" class="form" type="email" placeholder="Email" />
-      <input
-        v-model="password"
-        class="form"
-        type="password"
-        placeholder="Password"
-      />
-      <button @click="request_signin">登録</button>
-    </div>
+    <ValidationObserver v-slot="{ handleSubmit }">
+      <form class="form-wrapper" @submit.prevent="handleSubmit(request_signin)">
+        <ValidationProvider
+          ref="email"
+          v-slot="{ errors }"
+          rules="required|email"
+          name="メールアドレス"
+        >
+          <span>{{ errors[0] }}</span>
+
+          <input
+            v-model="email"
+            class="form"
+            type="email"
+            placeholder="Email"
+          />
+        </ValidationProvider>
+        <ValidationProvider
+          ref="password"
+          v-slot="{ errors }"
+          rules="required"
+          name="パスワード"
+        >
+          <span>{{ errors[0] }}</span>
+
+          <input
+            v-model="password"
+            class="form"
+            type="password"
+            placeholder="Password"
+          />
+        </ValidationProvider>
+        <button>登録</button>
+      </form>
+    </ValidationObserver>
   </div>
 </template>
 
@@ -63,12 +88,24 @@ h1.title {
   width: 100%;
   margin: auto;
 }
-.form-wrapper > .form {
+.form {
   margin: 5px auto;
   width: 60%;
   font-size: 24px;
 }
-.form-wrapper > button {
+span {
+  display: block;
+  text-align: center;
+}
+.form-wrapper > span {
+  margin-bottom: 30px;
+}
+
+.form-wrapper > span > span {
+  color: red;
+}
+
+button {
   margin: 10px auto;
   width: 40%;
   font-size: 32px;
