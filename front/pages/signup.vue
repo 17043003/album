@@ -18,36 +18,48 @@
       />
       <button @click="request_signup">登録</button>
     </div>
+    <h2 v-for="error in errors" :key="error" class="error">{{ error }}</h2>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
-export type RequestParams = {
+export type FormAndErrorData = {
   name: string
   email: string
   password: string
   passwordConfirmation: string
+  errors: string[]
 }
 
 export default Vue.extend({
-  data(): RequestParams {
+  data(): FormAndErrorData {
     return {
       name: '',
       email: '',
       password: '',
       passwordConfirmation: '',
+      errors: [],
     }
   },
   methods: {
     request_signup() {
-      this.$axios.post('auth', {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-        password_confirmation: this.passwordConfirmation,
-      })
+      this.errors = []
+      this.$axios
+        .post('auth', {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+          password_confirmation: this.passwordConfirmation,
+        })
+        .catch((error) => {
+          const errorMessages = error.response.data.error
+          errorMessages.forEach((message) => {
+            this.errors.push(message)
+          })
+          this.errors = new Set(this.errors) // 重複を排除
+        })
     },
   },
   auth: false,
@@ -74,5 +86,9 @@ h1.title {
   margin: 10px auto;
   width: 40%;
   font-size: 32px;
+}
+.error {
+  color: red;
+  text-align: center;
 }
 </style>
