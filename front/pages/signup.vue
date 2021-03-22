@@ -36,7 +36,7 @@
         <ValidationProvider
           ref="password"
           v-slot="{ errors }"
-          rules="required"
+          rules="required|confirmed:password"
           name="パスワード"
           class="input-form"
         >
@@ -54,6 +54,7 @@
           v-slot="{ errors }"
           rules="required"
           name="確認用パスワード"
+          vid="password"
         >
           <span>{{ errors[0] }}</span>
           <input
@@ -141,12 +142,7 @@ h1.title {
 span {
   color: red;
   display: block;
-  /* width: 60%; */
-  /* text-align: center; */
-}
-span.input-form {
-  display: block;
-  margin: auto 30px;
+  text-align: center;
 }
 .error {
   color: red;
