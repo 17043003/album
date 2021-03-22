@@ -105,6 +105,14 @@ export default Vue.extend({
           password: this.password,
           password_confirmation: this.passwordConfirmation,
         })
+        .then((response) => {
+          this.$auth.$storage.setLocalStorage('token', response.headers.token)
+          this.$auth.$storage.setLocalStorage('uid', response.headers.uid)
+          this.$auth.$storage.setLocalStorage('client', response.headers.client)
+
+          this.$auth.setUserToken(response.headers.token, null)
+          this.$router.push('/user/mypage')
+        })
         .catch((error) => {
           const errorMessages = error.response.data.error
           errorMessages.forEach((message) => {
