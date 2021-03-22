@@ -9,6 +9,9 @@ export default Vue.extend({
     logout() {
       if (confirm('ログアウトしますか？') === true) {
         this.$auth.logout()
+        this.$auth.$storage.removeLocalStorage('token')
+        this.$auth.$storage.removeLocalStorage('client')
+        this.$auth.$storage.removeLocalStorage('uid')
       }
     },
   },
