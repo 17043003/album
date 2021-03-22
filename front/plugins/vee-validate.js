@@ -5,11 +5,12 @@ import {
   extend,
   localize,
 } from 'vee-validate'
-import { required, email } from 'vee-validate/dist/rules'
+import { required, email, confirmed } from 'vee-validate/dist/rules'
 import ja from 'vee-validate/dist/locale/ja.json'
 
 extend('required', required)
 extend('email', email)
+extend('confirmed', confirmed)
 
 localize('ja', ja)
 
